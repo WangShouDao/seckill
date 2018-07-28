@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.slf4j.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:spring/spring-dao.xml","classpath:spring/spring-service.xml"})
+@ContextConfiguration({"classpath*:spring/spring-dao.xml","classpath:spring/spring-service.xml"})
 public class SeckillServiceTest {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -38,31 +38,27 @@ public class SeckillServiceTest {
 		logger.info("seckill={}",seckill);
 	}
 
-	@Test
-	public void testExportSeckillUrl() {
-		long id = 1000;
-		Exposer exposer = seckillService.exportSeckillUrl(id);
-		if (exposer.isExposed()) {
-			logger.info("exposer={}", exposer);
-			long phone = 13631231234L;
-			String md5 = exposer.getMd5();
-			try {
-				SeckillExecution execution = seckillService.executeSeckill(id, phone, md5);
-				logger.info("execution={}", execution);
-			} catch (RepeatKillException e) {
-				logger.error(e.getMessage());
-			} catch (SeckillCloseException e) {
-				logger.error(e.getMessage());
+	// 测试代码完整逻辑，注意可重复执行
+		@Test
+		public void testSeckillLogic() throws Exception {
+			long id = 1001;
+			Exposer exposer = seckillService.exportSeckillUrl(id);
+			if (exposer.isExposed()) {
+				logger.info("exposer={}", exposer);
+				long phone = 13631231234L;
+				String md5 = exposer.getMd5();
+				try {
+					SeckillExecution execution = seckillService.executeSeckill(id, phone, md5);
+					logger.info("execution={}", execution);
+				} catch (RepeatKillException e) {
+					logger.error(e.getMessage());
+				} catch (SeckillCloseException e) {
+					logger.error(e.getMessage());
+				}
+			} else {
+				// 秒杀未开启
+				logger.error("exposer={}", exposer);
 			}
-		} else {
-			// 秒杀未开启
-			logger.error("exposer={}", exposer);
-		} 
-	}
-
-	@Test
-	public void testExecuteSeckill() {
-		fail("Not yet implemented");
-	}
+		}
 
 }

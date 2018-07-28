@@ -9,7 +9,7 @@ import org.seckill.dto.Exposer;
 import org.seckill.dto.SeckillExecution;
 import org.seckill.entity.Seckill;
 import org.seckill.entity.SuccessKilled;
-import org.seckill.enums.SeckillStatEnum;
+import org.seckill.enums.SeckillStateEnum;
 import org.seckill.exception.RepeatKillException;
 import org.seckill.exception.SeckillCloseException;
 import org.seckill.exception.SeckillException;
@@ -97,7 +97,7 @@ public class SeckillServiceImpl implements SeckillService {
 				} else {
 					//√Î…±≥…π¶
 					SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
-					return new SeckillExecution(seckillId,  SeckillStatEnum.SUCCESS, successKilled);
+					return new SeckillExecution(seckillId,  SeckillStateEnum.SUCCESS, successKilled);
 				}
 			}
 	 	} catch(SeckillCloseException e1) {

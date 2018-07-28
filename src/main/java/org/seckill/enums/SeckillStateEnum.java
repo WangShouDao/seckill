@@ -7,7 +7,7 @@ import org.seckill.entity.SuccessKilled;
  * @author weary
  *
  */
-public enum SeckillStatEnum {
+public enum SeckillStateEnum {
 	SUCCESS(1, "√Î…±≥…π¶"),
 	END(0, "√Î…±Ω· ¯"),
 	REPEAT_KILL(-1, "÷ÿ∏¥√Î…±"),
@@ -18,7 +18,7 @@ public enum SeckillStatEnum {
 
 	private String stateInfo;
 
-	private SeckillStatEnum(int state, String stateInfo) {
+	private SeckillStateEnum(int state, String stateInfo) {
 		this.state = state;
 		this.stateInfo = stateInfo;
 	}
@@ -39,8 +39,8 @@ public enum SeckillStatEnum {
 		this.stateInfo = stateInfo;
 	}
 
-	public static SeckillStatEnum stateOf(int index) {
-		for(SeckillStatEnum state : values()) {
+	public static SeckillStateEnum stateOf(int index) {
+		for(SeckillStateEnum state : values()) {
 			if(state.getState() == index) {
 				return state;
 			}
