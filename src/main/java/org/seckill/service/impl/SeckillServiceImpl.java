@@ -35,7 +35,7 @@ public class SeckillServiceImpl implements SeckillService {
 	private SuccessKilledDao successKilledDao;
 	
 	//md5ÑÎÖµ£¬ ÓÃÓÚ»ìÏımd5
-	private final String salt = "ackdbo";
+	private final String salt = "123456";
 	
 	public List<Seckill> getSeckillList() {
 		return seckillDao.queryAll(0, 4);
