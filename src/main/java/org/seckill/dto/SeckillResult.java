@@ -1,4 +1,4 @@
-package org.seckill.dao;
+package org.seckill.dto;
 
 //所有ajax请求返回类型，封装json结果
 public class SeckillResult<T> {

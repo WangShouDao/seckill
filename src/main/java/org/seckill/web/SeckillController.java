@@ -3,9 +3,9 @@ package org.seckill.web;
 import java.util.Date;
 import java.util.List;
 
-import org.seckill.dao.SeckillResult;
 import org.seckill.dto.Exposer;
 import org.seckill.dto.SeckillExecution;
+import org.seckill.dto.SeckillResult;
 import org.seckill.entity.Seckill;
 import org.seckill.enums.SeckillStateEnum;
 import org.seckill.exception.RepeatKillException;
